@@ -1,8 +1,6 @@
 #!/bin/bash
 
-git clone https://github.com/avinash-k16/chainlink.git
-cd chainlink
-go buil main.go
+go build main.go
 result=`go run .`
 contract=$(echo $result | cut -d " " -f3)
 val=$(echo $result | cut -d " " -f8)
