@@ -17,10 +17,10 @@ import (
 func main() {
 
 	var (
-		sk = crypto.ToECDSAUnsafe(common.FromHex(os.Getenv("PK_ENV")))
+		sk = crypto.ToECDSAUnsafe(common.FromHex(os.Getenv("PKENV")))
 	)
 
-	client, err := ethclient.Dial("https://eth-sepolia.g.alchemy.com/v2/VCfAcut18Pa4AQoWUPHEzSG2nd1Xe2N7")
+	client, err := ethclient.Dial("https://eth-sepolia.g.alchemy.com/v2/" + os.Getenv("APIKEY"))
 	if err != nil {
 		panic(err)
 	}
@@ -35,14 +35,14 @@ func main() {
 		log.Fatalf("Unable to get transactopts\n")
 	}
 	contAddress := common.HexToAddress("0xe7C127f12Dbc68f4114281B82dC1a5DB6515f0A7")
-	fmt.Printf("Contract address is %v\n", contAddress)
+	fmt.Printf("Contract address: %v\n", contAddress)
 
 	contract, err := contracts.NewGetterSetter(contAddress, client)
 	if err != nil {
 		log.Fatalf("Unable to bind to deployed instance of contract\n")
 	}
 
-	contract.SetUint256(transactOpts, big.NewInt(21))
+	contract.SetUint256(transactOpts, big.NewInt(101))
 	if err != nil {
 		log.Fatalf("Unable to setUint256\n")
 	}
@@ -53,5 +53,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("Unable to get callopts\n")
 	}
-	fmt.Printf("The value of GetUint256 is %v \n", val)
+	fmt.Printf("The value set was: %v\n", val)
 }
