@@ -1,4 +1,4 @@
-#Chainlink qa assessment
+# Chainlink qa-assessment
 
 This repo contains the test contract, go files and the bash script to execute
 and get the desired output.
@@ -17,20 +17,20 @@ And it should be available in the docker public repo.
 
 Below are the detailed steps to execute the solution,
 
-1. On the terminal, run 'docker pull avidock16/chainlink:qa-assessment'
-2. then run ' docker run -i -t <image_id> /bin/bash'
+1. On the terminal, run `docker pull avidock16/chainlink:qa-assessment`
+2. then run `docker run -i -t <image_id> /bin/bash`
 
 you should be taken to the bash terminal of your container.
 
-3.then run, 'sed -i.bak 's/\r$//' runSetGet.sh'
+3.then run, `sed -i.bak 's/\r$//' runSetGet.sh`
 Please note the above step is needed because of windows line endings on unix.
 
-4. Finally run, 'bash runSetGet.sh'
+4. Finally run, `bash runSetGet.sh`
 
 You will see this in the output,
-{"Contract Address" : "0xe7C127f12Dbc68f4114281B82dC1a5DB6515f0A7", "Value set" : "101"}
+`{"Contract Address" : "0xe7C127f12Dbc68f4114281B82dC1a5DB6515f0A7", "Value set" : "101"}`
 
-and if you run the command 'ls', you will also see that there is an output.json file 
+and if you run the command `ls`, you will also see that there is an `output.json` file 
 with the above content.
 Please note that I was unable to get the wallet address programmatically, hence
 did not wanna just pass it as ENV variable to print it out.
